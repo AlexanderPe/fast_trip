@@ -1,0 +1,27 @@
+<header>
+  <div>
+    <div>
+      <%= link_to "fast trip", '#', id: "logo" %>
+      <nav>
+        <ul>
+          <li><%= link_to "Home", '#' %></li>
+          <li><%= link_to "Help", '#' %></li>
+
+          <% if signed_in? %>
+            <li><%= link_to "Users", '#' %></li>
+            <li>
+              <ul>
+                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+              </ul>
+            </li>
+
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
