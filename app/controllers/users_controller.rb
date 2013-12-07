@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
+  before_filter :signed_in_user_filter, only: [:new, :create]
   
   def show
     @user = User.find(params[:id])
@@ -40,10 +41,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    redirect_to users_url
+    user_to_delete = User.find(params[:id]).destroy
+    if (current_user == user_to_delete) && (current_user.admin?)
+      flash[:error] = "Cannot delete own admin account!"
+    else  
+      user_to_delete.destroy
+      flash[:success] = "User destroyed."
+      redirect_to users_url
+    end
   end
+
 
   private
 

@@ -34,4 +34,10 @@ module SessionsHelper
     def store_location
       session[:return_to] = request.url
     end
+
+    def signed_in_user_filter
+    if signed_in?
+        redirect_to users_path, notice: "Already logged in"
+    end
+  end
 end

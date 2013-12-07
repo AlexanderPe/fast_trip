@@ -9,6 +9,12 @@ describe "Authentication" do
 
     it { should have_selector('h1',    text: 'Sign in') }
     it { should have_selector('title', text: 'Sign in') }
+
+    it { should_not have_link('Users') }
+    it { should_not have_link('Profile') }
+    it { should_not have_link('Settings') }
+    it { should_not have_link('Sign out', href: signout_path) }
+    it { should have_link('Sign in', href: signin_path) }
   end
 
   describe "signin" do
@@ -21,7 +27,7 @@ describe "Authentication" do
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
 
       describe "after visiting another page" do
-        before { click_link "Home" }
+        before { click_link "Sign up" }
         it { should_not have_selector('div.alert.alert-error') }
       end
     end
@@ -63,6 +69,20 @@ describe "authorization" do
 
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
+          end
+
+          describe "when signing in again" do
+            before do
+              sign_out user
+              visit signin_path
+              fill_in "Email",    with: user.email
+              fill_in "Password", with: user.password
+              click_button "Sign in"
+            end
+
+            it "should render the default (profile) page" do
+              page.should have_selector('title', text: user.email)
+            end
           end
         end
       end
@@ -112,6 +132,31 @@ describe "authorization" do
         before { delete user_path(user) }
         specify { response.should redirect_to(signin_path) }
       end
+    end
+
+    describe "for signed in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user }
+
+      describe "using a 'new' action" do
+        before { get new_user_path }
+        specify { response.should redirect_to(users_path) }
+      end
+
+      describe "using a 'create' action" do
+        before { post users_path }
+        specify { response.should redirect_to(users_path) }
+      end 
+
+      describe "sesssion a 'new' action" do
+        before { get new_session_path }
+        specify { response.should redirect_to(users_path) }
+      end
+
+      describe "session a 'create' action" do
+        before { post sessions_path }
+        specify { response.should redirect_to(users_path) }
+      end 
     end
   end
 end

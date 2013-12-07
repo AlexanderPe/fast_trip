@@ -17,6 +17,28 @@ describe "User pages" do
     it { should have_selector('title', text: 'All users') }
     it { should have_selector('h1', text: 'All users') }
 
+    describe "delete links" do
+
+      it { should_not have_link('delete') }
+      it { should have_link('Sign out', href: signout_path) }
+
+      describe "as an admin user" do
+
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_out user
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete', href: user_path(User.first)) }
+        it "should be able to delete another user" do
+          expect { click_link('delete') }.to change(User, :count).by(-1)
+        end
+        it { should_not have_link('delete', href: user_path(admin)) }
+      end
+    end
+
     describe "pagination" do
 
       before(:all) { 30.times { FactoryGirl.create(:user) } }
@@ -31,24 +53,7 @@ describe "User pages" do
       end
     end
 
-    describe "delete links" do
-
-      it { should_not have_link('delete') }
-
-      describe "as an admin user" do
-        let(:admin) { FactoryGirl.create(:admin) }
-        before do
-          sign_in admin
-          visit users_path
-        end
-
-        it { should have_link('delete', href: user_path(User.first)) }
-        it "should be able to delete another user" do
-          expect { click_link('delete') }.to change(User, :count).by(-1)
-        end
-        it { should_not have_link('delete', href: user_path(admin)) }
-      end
-    end
+    
   end
 
   describe "profile page" do
@@ -109,6 +114,8 @@ describe "User pages" do
   end
 
   describe "edit" do
+
+
     let(:user) { FactoryGirl.create(:user) }
     before do
       sign_in user
@@ -131,7 +138,7 @@ describe "User pages" do
       before do
         fill_in "Email",            with: new_email
         fill_in "Password",         with: user.password
-        fill_in "Confirm Password", with: user.password
+        fill_in "Confirmation",     with: user.password
         click_button "Save changes"
       end
 
@@ -140,6 +147,13 @@ describe "User pages" do
       it { should have_link('Sign out', href: signout_path) }
       specify { user.reload.email.should == new_email }
     end
-  end
 
+    describe "admin attribute" do
+        it  "should not be accessible" do
+        expect do
+            user.update_attributes(:admin => true)
+        end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+      end
+    end
+  end
 end
