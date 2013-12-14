@@ -12,6 +12,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
   has_secure_password
+  has_many :trips
 
   before_save { email.downcase! }
   before_save { create_secure_token(:remember_token) }

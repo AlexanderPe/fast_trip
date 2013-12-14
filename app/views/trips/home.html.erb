@@ -1,0 +1,8 @@
+<h1>fast trip</h1>
+<% if current_user.try(:admin?)%>
+<%= link_to "Create a trip", new_trip_path %>
+<% end %>
+
+<ol class="trips">
+  <%= render @trips %>
+</ol>

@@ -1,5 +1,10 @@
 <li>
   <%= link_to user.email, user %>
+  <% if user.admin? %>
+  	| admin
+  <% else %>
+  	| user
+  <% end %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>

@@ -12,6 +12,13 @@ namespace :db do
       User.create!(email: email,
                    password: password,
                    password_confirmation: password)
+    
+    10.times do
+      title = Faker::Lorem.sentence(5)
+      content = Faker::Lorem.sentence(5)
+      image = Faker::Lorem.sentence(5)
+      admin.trips.create!(title: title, content: content, image: image)
     end
-  end
+    end
+    end
 end

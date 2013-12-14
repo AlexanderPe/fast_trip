@@ -1,14 +1,16 @@
 <header>
   <div>
     <div>
-      <%= link_to "fast trip", '#', id: "logo" %>
+      <%= link_to "fast trip", root_path, id: "logo" %>
       <nav>
         <ul>
           <li><%= link_to "Home", '#' %></li>
           <li><%= link_to "Help", '#' %></li>
 
           <% if signed_in? %>
-            <li><%= link_to "Users", users_path %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to "Users", users_path %></li>
+            <% end %>
             <li>
               <ul>
                 <li><%= link_to "Profile", current_user %></li>

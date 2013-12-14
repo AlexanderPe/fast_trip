@@ -1,0 +1,7 @@
+<% provide(:title, "Edit trip") %>
+<h1>Edit trip</h1>
+
+<%= form_for(@trip) do |f| %>
+  <%= render 'fields', f: f %>
+  <%= f.submit "Save changes" %>
+<% end %>

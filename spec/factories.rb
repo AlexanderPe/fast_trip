@@ -8,4 +8,11 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :trip do
+  	title "avg" 
+    content "Lorem ipsum"
+    image "image.png"
+    user
+  end
 end

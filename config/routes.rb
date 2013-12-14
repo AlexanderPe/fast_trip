@@ -1,9 +1,13 @@
 FastTrip::Application.routes.draw do
+ 
+  root to: 'trips#home'
+
   get "password_resets/new"
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
+  resources :trips
   
 
   match '/signup',  to: 'users#new'

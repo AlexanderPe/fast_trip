@@ -3,11 +3,9 @@ module SessionsHelper
 	  def sign_in(user)
         self.current_user = user
       if params[:remember_me]
-    	  cookies.permanent[:remember_token] = user.remember_token
-    	
+    	  cookies.permanent[:remember_token] = user.remember_token   	
       else
         cookies[:remember_token] = user.remember_token
-
       end
     end
 
@@ -42,8 +40,25 @@ module SessionsHelper
     end
 
     def signed_in_user_filter
-    if signed_in?
+      if signed_in?
         redirect_to users_path, notice: "Already logged in"
+      end
     end
-  end
+
+    private
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+    end
+
+    def admin_user
+      if current_user 
+        redirect_to(current_user) unless current_user.admin?
+      else
+        redirect_to signin_url
+      end
+    end
 end

@@ -36,9 +36,9 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
 
-      it { should have_selector('title', text: user.email) }
+      it { should have_selector('title', text: 'fast trip') }
 
-      it { should have_link('Users',    href: users_path) }
+      it { should_not have_link('Users', href: users_path) }
       it { should have_link('Profile',  href: user_path(user)) }
       it { should have_link('Settings', href: edit_user_path(user)) }
       it { should have_link('Sign out', href: signout_path) }
@@ -56,6 +56,19 @@ describe "authorization" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+
+      describe "in the Trips controller" do
+
+        describe "submitting to the create action" do
+          before { post trips_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete trip_path(FactoryGirl.create(:trip)) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
 
       describe "when attempting to visit a protected page" do
         before do
@@ -80,8 +93,8 @@ describe "authorization" do
               click_button "Sign in"
             end
 
-            it "should render the default (profile) page" do
-              page.should have_selector('title', text: user.email)
+            it "should render the default (home) page" do
+              page.should have_selector('title', text: 'fast trip')
             end
           end
         end
@@ -130,7 +143,7 @@ describe "authorization" do
 
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
-        specify { response.should redirect_to(signin_path) }
+        specify { response.should redirect_to(non_admin) }
       end
     end
 

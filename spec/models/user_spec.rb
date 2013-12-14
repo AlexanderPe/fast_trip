@@ -9,15 +9,14 @@ describe User do
 
   subject { @user }
 
-
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:trips) }
   it { should respond_to(:admin) }
-
 
   it { should be_valid }
   it { should_not be_admin }
@@ -116,5 +115,21 @@ describe User do
   describe "remember token" do 
     before { @user.save }
     its(:remember_token) {should_not be_blank}
+  end
+
+  describe "trips associations" do
+
+  before { @user.save }
+
+    let!(:older_trip) do
+      FactoryGirl.create(:trip, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_trip) do
+      FactoryGirl.create(:trip, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right microposts in the right order" do
+      @user.trips.should == [newer_trip, older_trip]
+    end
   end
 end
