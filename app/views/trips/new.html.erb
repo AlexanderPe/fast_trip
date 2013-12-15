@@ -1,7 +1,9 @@
 <% provide(:title, 'Create a trip') %>
 <h1>Creat a trip</h1>
 
+<div class="trips">
 <%= form_for(@trip) do |f| %>
   <%= render 'fields', f: f %>
   <%= f.submit "Create" %>
-<% end %>
+<% end %>'
+</div>

@@ -1,3 +1,16 @@
-<ol class="trips">
-  <%= render @trip %>
-</ol>
+<div class="block">
+
+  <%= link_to image_tag(trip.image_url(:thumb).to_s), trip_path(trip.id) %>	
+  </div>
+  <div class="title"><%= trip.title %></div>
+  <div class="content"><%= trip.content %></div>
+  <div class="left"></div><div class="right"></div> 
+  <div class="price"><p>1488</p></div>
+
+   <% if current_user.try(:admin?) %>
+  	  <%= link_to "edit", edit_trip_path(trip.id), :class => 'action' %>	
+    | <%= link_to "delete", trip, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: trip.title %>
+  <% end %>
+</div>

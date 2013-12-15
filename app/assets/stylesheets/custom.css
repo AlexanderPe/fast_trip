@@ -1,0 +1,86 @@
+body {
+background-color:rgba(244, 244, 244, 1);
+text-align:center;margin:0 auto
+}
+
+.trips {
+width: 960px;
+height:100%
+overflow: hidden;
+text-align:center;
+margin:0 auto;
+}
+
+.block {
+height:355px;
+width:220px;
+border-radius: 5px;
+overflow: hidden;
+float: left;
+margin-bottom: 20px;
+margin-left:10px;
+margin-right:10px;
+background-color: rgba(255, 255, 255, 1);
+z-index: 1;
+}
+
+.image {
+width:220px;
+height:220px;
+display: block;
+}
+
+.price {
+width:220px;
+height: 35px;
+margin-top:80px;
+position:relative;
+
+border-top: 2px dotted rgba(244, 244, 244, 1);
+
+}
+img{max-width:220px;
+max-height:220px;
+}
+
+.line {
+width:220px;
+height: 1px;
+border: 1px dotted black;
+margin-top:45px;
+}
+
+.left {
+border-radius: 50%;
+width: 10px;
+height: 10px;
+background-color:rgba(244, 244, 244, 1);
+float:left;
+margin-top: -87px;
+margin-left:-6px;
+
+position:absolute;
+z-index: 2;
+}
+
+.right {
+border-radius: 50%;
+width: 10px;
+height: 10px;
+background-color:rgba(244, 244, 244, 1);
+float:left;
+margin-top: -89px;
+margin-left:214px;
+
+position:absolute;
+z-index: 2;
+}
+
+.trip_left {
+    float:left;
+}
+
+p {
+float:right;
+margin-bottom: 0;
+}
