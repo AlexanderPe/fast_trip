@@ -2,7 +2,7 @@ class CreateTrips < ActiveRecord::Migration
   def change
     create_table :trips do |t|
       t.string :title
-      t.string :content
+      t.text :content
       t.string :image
       t.integer :user_id
 

@@ -37,9 +37,10 @@ margin-top:80px;
 position:relative;
 
 border-top: 2px dotted rgba(244, 244, 244, 1);
-
 }
-img{max-width:220px;
+
+img {
+max-width:220px;
 max-height:220px;
 }
 
@@ -80,7 +81,7 @@ z-index: 2;
     float:left;
 }
 
-p {
+.trip p {
 float:right;
 margin-bottom: 0;
 }

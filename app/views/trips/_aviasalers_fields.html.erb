@@ -1,0 +1,24 @@
+<p>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.label :quantity %><br />
+  <%= f.text_field :quantity %>
+</p>
+
+<p>
+  <%= f.label :actual_time %><br />
+  <%= f.datetime_select :actual_time %>
+</p>
+
+<p>
+  <%= f.label :price %><br />
+  <%= f.text_field :price %>
+</p>
+
+<p>
+<%= f.check_box :_destroy %>
+<%= f.label :_destroy, "Remove" %>
+</p>

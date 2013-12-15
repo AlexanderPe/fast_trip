@@ -1,5 +1,7 @@
 class Trip < ActiveRecord::Base
   attr_accessible :content, :image, :title
+  has_many :aviasalers, dependent: :destroy
+  accepts_nested_attributes_for :aviasalers
   belongs_to :user
 
   validates :user_id, presence: true
