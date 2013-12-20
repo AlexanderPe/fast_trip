@@ -298,17 +298,16 @@ input::-moz-focus-inner /*Remove button padding in FF*/
   
 }
 #checkbox{
-    margin-left:23px;
-    margin-top:3px;
-   margin-right:13px;
-     float: left;
-    
+  margin: 0px 13px 0px 23px;
+  float: left;
 }
+
 #agreement{
     color:rgba(149, 165, 165, 1);
     font-size:11px;
-display: block;
+    display: block;
     line-height: 15px;
+
 }
 #submit{
     width:272px;
@@ -322,16 +321,21 @@ display: block;
     box-shadow: 0px 2px 0px rgb(101, 185, 106);
     border: 0; 
     font-weight: bold;
+    position: relative;
+    top: 0;
+
 }
 #submit:hover{
  background-color:rgba(107, 197, 113, 1);   
-box-shadow: 0px 2px 0px rgb(96, 177, 102);
+ box-shadow: 0px 2px 0px rgb(96, 177, 102);
 }
 #submit:active{
     background-color:rgba(105, 193, 111, 1);
-    transform: translate(0,2px);
-    box-shadow:none;
+    top: 2px;
+    box-shadow: 0px 0px #d3545d;
 }
+
+
 #remind{
     font-size:12px;
     margin-left:23px;
