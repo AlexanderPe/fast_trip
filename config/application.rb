@@ -9,11 +9,14 @@ require "sprockets/railtie"
 require 'carrierwave'
 # require "rails/test_unit/railtie"
 
+
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
+
 end
 
 module FastTrip
@@ -42,6 +45,8 @@ module FastTrip
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+
+    config.autoload_paths << "#{config.root}/lib"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

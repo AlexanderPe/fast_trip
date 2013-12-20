@@ -1,23 +1,12 @@
-<h1>Reset Password</h1>
+<div id="register"> 
+    <p id="name_reg">Reset Password</p>
+    <%= link_to "Sign in", signin_path, id: "enter_link" %>
 
-<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "Password", id: "input_fields" %>
+
+    <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", id: "input_fields" %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Update Password" %></div>
-<% end %>
+
+  <div id="smb"><%= submit_tag("Update Password", id: "submit") %></div> 
+<% end %>        
+</div>

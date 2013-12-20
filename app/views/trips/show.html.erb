@@ -1,12 +1,30 @@
   
   <%= image_tag @trip.image_url(:thumb).to_s %>	
 
-  <div class="title"><%= @trip.title %></div>
-  <div class="content"><%= @trip.content %></div>
-  <%= aviasaler.name %>
-  <%= aviasaler.quantity %>
-  <%= aviasaler.actual_time %>
-  <%= aviasaler.price %>
+  <p><%= @trip.title %></p>
+  <p><%= @trip.content %></p>
+
+ 
+  <% for aviasaler in @trip.aviasalers %>
+    <li>Supplier: <%=h aviasaler.name %></li>
+    <li>Quantity: <%=h aviasaler.quantity %></li>
+    <li>Actual Time: <%=h aviasaler.actual_time %></li>
+    <li>Price: <%=h aviasaler.price %></li>
+  <% end %>
+
+ 
+  <% for ticket in @trip.tickets %>
+    <p>Departure City: <%=h ticket.departure_city %> </p>
+    <p>Departure Code: <%=h ticket.departure_code %></p>
+    <p>Departure Time: <%=h ticket.departure_time %></p>
+    <p>Arrival City: <%=h ticket.arrival_city %></p>
+    <p>Arrival Code: <%=h ticket.arrival_code %></p>
+    <p>Arrival Time: <%=h ticket.arrival_time %></p>
+    <p>Aviacompany: <%=h ticket.aviacompany %></p>
+    <p>Flight: <%=h ticket.flight %></p>
+    <p>Change: <%=h ticket.change %></p>
+  <% end %>
+ 
 
    <% if current_user.try(:admin?) %>
   	  <%= link_to "edit", edit_trip_path(@trip.id), :class => 'action' %>	

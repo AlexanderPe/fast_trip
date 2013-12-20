@@ -2,6 +2,16 @@
 <h1>Sign up</h1>
 
 <%= form_for(@user) do |f| %>
-  <%= render 'fields', f: f %>
-  <%= f.submit "Create my account" %>
+<div id="register"> 
+	<p id="name_reg">Registration</p>
+	<%= link_to "Sign in", signin_path, id: "enter_link" %>
+	<%= render 'fields', f: f %>
+	<div id="check">
+		<label id="agreement">
+			<input type="checkbox" id="checkbox">Agree with <a>user terms</a> and <a>private policy</a>
+		</label>
+	</div>
+	<div id="smb"><%= f.submit "Create my account", id: "submit" %></div>
+	<p id="remind"><%= link_to "Remind the password", new_password_reset_path %></p>
+</div> 
 <% end %>

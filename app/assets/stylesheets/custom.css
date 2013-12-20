@@ -1,6 +1,78 @@
-body {
+
+html {
 background-color:rgba(244, 244, 244, 1);
-text-align:center;margin:0 auto
+height: 100%;
+overflow-x: hidden;
+
+}
+
+body {
+height: 100%;
+}
+
+#header_div {
+   width: 940px;
+    height: 35px;
+    z-index: 1;
+    margin:0 auto; 
+}
+
+#fast_trip{
+    float: left;
+    margin-top:5px;
+}
+#name{
+    width:120px;
+    margin-right:20px;
+    height: 23px;
+    float:right;
+       background-color: rgba( 255, 171, 163, 1);
+    border-radius: 5px;
+    margin-top:5px;
+}
+
+#like{
+    width:46px;
+    height: 23px;
+    background-color: rgba( 255, 171, 163, 1);
+    float:right;
+    z-index: 2;
+    border-radius: 5px;
+  margin-top:5px; 
+}
+
+#currency  {
+    width:45px;
+    height: 23px;
+    margin-right: 20px;
+        background-color: rgba( 255, 171, 163, 1);
+    float:right;
+    border-radius:5px;
+    margin-top:5px;
+}
+
+#lang{
+    float:right;
+    height: 23px;
+    width: 72px;
+    margin-right: 20px;
+     background-color: rgba( 255, 171, 163, 1);
+    border-radius:5px;
+    margin-top:5px;
+}
+
+/*Body*/
+
+.content {
+min-height: 100%;
+margin-bottom: -30px;
+position: relative;
+}
+
+.contentwrapper {
+  margin: 0 auto; 
+  width: 960px; 
+  margin-top: 50px;
 }
 
 .trips {
@@ -84,4 +156,231 @@ z-index: 2;
 .trip p {
 float:right;
 margin-bottom: 0;
+}
+
+/* Footer */
+
+footer {
+ z-index: 3;
+  background-color: rgba(3,18,43,0.4);
+   height:153px;
+min-width: 960px;
+max-width: 100%;
+position: relative;
+}
+
+.clearfooter {
+height: 40px;
+clear: both;
+}
+
+.footertext {
+margin: 0 auto; 
+width: 960px; 
+padding-top: 10px;
+text-align: center;
+font-size: 15px
+}
+
+/* static pages */
+
+#contacts{
+margin-top:30px;
+    width:78px;
+    height:14px;
+    float:right;
+   list-style-type: none;
+}
+#terms{
+     width:75px;
+    height:14px;
+    float:right;
+    list-style-type: none;
+    margin-top:30px;
+}
+#help{
+ width:69px;
+    height:14px;
+    float:right;   
+    list-style-type: none;
+    margin-top:30px;
+}
+
+#about {
+     width:80px;
+    height:14px;
+    float:right;
+     margin-right:220px;
+    margin-top:30px;
+    list-style-type: none;
+}
+#foot_div {
+    width:940px;
+    height: 153px;
+    text-align: center;
+    z-index: 1;
+    margin:0 auto; 
+}
+#pay{
+    float:right;
+    list-style-type: none;
+    height:26px;
+    margin-top:30px;
+}
+#phones{
+    float:left;
+   width:135px;
+    height:30px;
+list-style-type: none;
+    margin-top:30px;
+ 
+}
+#slogan{
+    float:left;
+position:absolute;
+    bottom:0;
+margin-bottom: 30px;
+    white-space:nowrap;
+}
+.foot_p{
+  margin-top:0;
+  margin-bottom:0;
+}
+
+input::-moz-focus-inner /*Remove button padding in FF*/
+{ 
+    border: 0;
+    padding: 0;
+}
+
+#register{
+    width:320px;
+    min-height:197px;
+    height:100%;
+    background-color:rgba( 230, 235, 230, 1);
+    border-radius: 6px;
+    font-family: 'PT Sans Caption', sans-serif;
+}
+#name_reg{
+    float:left;
+    padding-left:23px;
+     margin-top:30px;
+    font-size:17px;
+    font-weight:bold;
+    color:rgba(127, 144, 144, 1);
+    margin-bottom:15px;
+}
+
+#enter_link{
+    float:right;
+    padding-right:23px;
+     text-decoration:underline;
+     margin-top:30px;
+    font-size:15px;
+    font-weight:regular;
+    color:rgba(127, 144, 144, 1);
+    margin-bottom:15px;
+}
+#input_fields{
+    width:262px;
+    height:35px;
+    margin-top:15px;
+    border-radius:5px;
+    border: 0;
+    margin-left:23px;
+    padding-left:10px;
+    font-family: 'PT Sans Caption', sans-serif;
+    color:rgba(153, 153, 153, 1);
+}
+
+#check{
+    margin-top:15px;
+  
+}
+#checkbox{
+    margin-left:23px;
+    margin-top:3px;
+   margin-right:13px;
+     float: left;
+    
+}
+#agreement{
+    color:rgba(149, 165, 165, 1);
+    font-size:11px;
+display: block;
+    line-height: 15px;
+}
+#submit{
+    width:272px;
+    height:35px;
+    background-color:rgba(114, 209, 120, 1);
+    margin-left:23px;
+    margin-top:15px;
+    border-radius:5px;
+    color:white;
+    font-family: 'PT Sans Caption', sans-serif;
+    box-shadow: 0px 2px 0px rgb(101, 185, 106);
+    border: 0; 
+    font-weight: bold;
+}
+#submit:hover{
+ background-color:rgba(107, 197, 113, 1);   
+box-shadow: 0px 2px 0px rgb(96, 177, 102);
+}
+#submit:active{
+    background-color:rgba(105, 193, 111, 1);
+    transform: translate(0,2px);
+    box-shadow:none;
+}
+#remind{
+    font-size:12px;
+    margin-left:23px;
+    text-decoration:underline;
+    padding-bottom: 8px;
+    padding-top: 3px;
+}
+
+#agreement a{
+    text-decoration:underline;
+}
+
+.form_title {
+  margin-top: 15px;
+  height: auto;
+}
+
+/* errors */
+input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+
+.field_with_errors {
+  padding: 2px;
+  display: table;
+}
+
+.field_with_errors #input_fields{
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(201,130,166) inset;
+  margin-bottom: 6px;
+  margin-top: 12px;
+    }
+
+
+
+.field_with_errors #input_fields:focus {
+border: 0;
+-webkit-text-fill-color: rgba(153, 153, 153, 1);
+-webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+.field_with_errors .message {
+  color: rgb(201,130,166);
+  padding-left: 23px;
+  font-size: 12px;
+}
+
+textarea:focus, input:focus{
+    outline: 0;
 }

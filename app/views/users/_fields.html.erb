@@ -1,10 +1,6 @@
-<%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :email %>
-<%= f.text_field :email %>
+<%= f.text_field :email, id: "input_fields", placeholder: "E-mail"%>
 
-<%= f.label :password %>
-<%= f.password_field :password %>
+<%= f.password_field :password, id: "input_fields", placeholder: "Password"%>
 
-<%= f.label :password_confirmation, "Confirmation" %>
-<%= f.password_field :password_confirmation %>
+<%= f.password_field :password_confirmation, id: "input_fields", placeholder: "Confirm password"%>

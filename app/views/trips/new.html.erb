@@ -4,9 +4,6 @@
 <div class="trips">
   <%= form_for(@trip) do |f| %>
   <%= render 'fields', f: f %>
-	<% f.fields_for :aviasalers do |builder| %>
-    	<%= render 'aviasalers_fields', f: builder %> 
-	<% end %>
   <%= f.submit "Create" %>
 <% end %>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131215140955) do
+ActiveRecord::Schema.define(:version => 20131219123440) do
 
   create_table "aviasalers", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,23 @@ ActiveRecord::Schema.define(:version => 20131215140955) do
   end
 
   add_index "aviasalers", ["trip_id", "created_at"], :name => "index_aviasalers_on_trip_id_and_created_at"
+
+  create_table "tickets", :force => true do |t|
+    t.string   "departure_city"
+    t.string   "departure_code"
+    t.datetime "departure_time"
+    t.string   "arrival_city"
+    t.string   "arrival_code"
+    t.datetime "arrival_time"
+    t.string   "aviacompany"
+    t.string   "flight"
+    t.integer  "trip_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.boolean  "change"
+  end
+
+  add_index "tickets", ["trip_id", "created_at"], :name => "index_tickets_on_trip_id_and_created_at"
 
   create_table "trips", :force => true do |t|
     t.string   "title"

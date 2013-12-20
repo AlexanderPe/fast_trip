@@ -1,5 +1,11 @@
 FastTrip::Application.routes.draw do
  
+
+  match '/about',   to: 'static_pages#about'
+  match '/contacts', to: 'static_pages#contacts'
+  match '/help', to: 'static_pages#help'
+  match '/terms', to: 'static_pages#terms'
+
   root to: 'trips#home'
 
   get "password_resets/new"
@@ -8,7 +14,6 @@ FastTrip::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :trips
-  resources :aviasalers, only: [:create, :destroy]
   
 
   match '/signup',  to: 'users#new'

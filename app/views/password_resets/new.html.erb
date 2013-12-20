@@ -1,9 +1,10 @@
-<h1>Reset Password</h1>
 
-<%= form_tag password_resets_path, :method => :post do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
-  </div>
-  <div class="actions"><%= submit_tag "Reset Password" %></div>
-<% end %>
+<div id="register"> 
+    <p id="name_reg">Reset Password</p>
+    <%= link_to "Sign in", signin_path, id: "enter_link" %>
+    <%= form_tag password_resets_path, :method => :post do %>
+    <%= text_field_tag :email, params[:email], placeholder: "E-mail", id: "input_fields" %>
+    
+    <div id="smb"><%= submit_tag("Reset Password", id: "submit") %></div> 
+    <% end %>         
+</div>
