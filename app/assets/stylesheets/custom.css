@@ -96,7 +96,7 @@ display:table-cell;
 #like{
   width:46px;
   height: 23px;
-  background-color: rgba( 255, 171, 163, 1);
+  background-color:rgba( 255, 171, 163, 1);
   float:right;
   z-index: 2;
   border-radius: 5px;
@@ -127,7 +127,7 @@ float: left;
 margin-bottom: 20px;
 margin-left:10px;
 margin-right:10px;
-background-color: rgba(255, 255, 255, 1);
+background-color:rgba(255, 255, 255, 1);
 z-index: 1;
 }
 
@@ -157,7 +157,7 @@ margin-left: -6px;
 #novisa{
   width:37px;
   height:32px;
-  background-color: rgba(60, 203, 111, 1);
+  background-color:rgba(60, 203, 111, 1);
   margin-top:50px;
   position:absolute;
   border-radius:0 12px 12px 0;
@@ -251,7 +251,7 @@ margin-bottom: 0;
 
 footer {
  z-index: 3;
-  background-color: rgba(255, 255, 255, 1);
+background-color:rgba(255, 255, 255, 1);
 min-width: 960px;
 max-width: 100%;
 position: relative;
@@ -571,7 +571,7 @@ textarea:focus, input:focus{
 }
 
 #elipse {
-    background-color: rgba(61, 203, 111, 1);
+    background-color:rgba(61, 203, 111, 1);
     border-radius:50%;
     width:13px;
     height:17px;
@@ -582,7 +582,7 @@ textarea:focus, input:focus{
 }
 
 #elipse_big {
-    background-color: rgba(61, 203, 111, 1);
+    background-color:rgba(61, 203, 111, 1);
     border-radius:50%;
     width:18px;
     height:24px;
@@ -643,7 +643,7 @@ margin-left:481px;
     /* Styles */
     border-radius: 5px;
     color:rgba(255, 255, 255, 1);
-    background-color: rgba(67, 228, 125, 1);
+    background-color:rgba(67, 228, 125, 1);
     box-shadow: 0px 2px 0px rgba(81, 148, 85, 0.4);
     cursor: pointer;
     outline: none;
@@ -726,7 +726,6 @@ margin-left:481px;
  .wrapper-dropdown-3 .dropdown li:hover a {
     background-color:rgba(95, 175, 101, 1);
     color:#fff;
-    background-color:
 }
 /* Active state */
  
