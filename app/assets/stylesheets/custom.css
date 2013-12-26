@@ -73,7 +73,7 @@ opacity: 1;
 opacity: 0.2;
 margin-top:6px;
 background-color:rgba(67, 228, 125, 1);
-display:  table-cell;
+display:table-cell;
 }
 
 .buttons_header li{
@@ -153,7 +153,6 @@ margin-left: -6px;
     position:absolute;
     margin-top:82px;
     margin-left:-6px;
-
 }
 #novisa{
   width:37px;
@@ -234,8 +233,8 @@ text-align: left;
   clear:both;
   margin-top:10px;
   margin-bottom: 3px;
-
 }
+
 .places_trip_left{
   float:left;
 
@@ -271,7 +270,7 @@ float:left;
 
 /* static pages */
 li{
-   list-style-type: none;na
+   list-style-type: none;
 }
 
 #contacts{
@@ -395,8 +394,8 @@ input:-moz-focus-inner /*Remove button padding in FF*/
     font-weight: bold;
     position: relative;
     top: 0;
-
 }
+
 #submit:hover{
  background-color:rgba(107, 197, 113, 1);   
  box-shadow: 0px 2px 0px rgb(96, 177, 102);
@@ -469,8 +468,6 @@ textarea:focus, input:focus{
     outline: 0;
 }
 
-
-
 #big{
     width:649px;
     height: 290px;
@@ -532,7 +529,6 @@ textarea:focus, input:focus{
 #fast_trip {
   width:140px;
   height:44px;
- 
  background:url("http://www.pictureshack.ru/images/22660_logo.png");
   z-index:10;
   position:absolute;
@@ -798,8 +794,7 @@ margin: 50px 10px 50px 10px;
 }
 
 #create_trips {
-float:right;
-
+  float:right;
   margin-top:6px;
   background-color:rgba(325, 209, 96, 1);
   box-shadow:0 2px 0 rgba(236, 178, 47, 1);
@@ -859,7 +854,7 @@ float:right;
   -webkit-box-shadow: 0 0 0px 1000px rgb(219,224,225) inset;
   -moz-text-fill-color: rgb(108,123,123);
   -webkit-box-shadow: 0 0 0px 1000px rgb(219,224,225) inset;
-  }
+}
 
 .trip_block {
   width:700px;
