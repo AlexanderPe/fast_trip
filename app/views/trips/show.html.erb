@@ -1,30 +1,141 @@
-  
-  <%= image_tag @trip.image_url(:thumb).to_s %>	
+<fieldset>
 
-  <p><%= @trip.title %></p>
-  <p><%= @trip.content %></p>
+<p>
+<%= image_tag @trip.image_url(:thumb).to_s %> 
+</p>
 
- 
-  <% for aviasaler in @trip.aviasalers %>
-    <li>Supplier: <%=h aviasaler.name %></li>
-    <li>Quantity: <%=h aviasaler.quantity %></li>
-    <li>Actual Time: <%=h aviasaler.actual_time %></li>
-    <li>Price: <%=h aviasaler.price %></li>
-  <% end %>
+<p><%= @trip.title %></p>
+<p><%= @trip.content %></p>
 
- 
-  <% for ticket in @trip.tickets %>
-    <p>Departure City: <%=h ticket.departure_city %> </p>
-    <p>Departure Code: <%=h ticket.departure_code %></p>
-    <p>Departure Time: <%=h ticket.departure_time %></p>
-    <p>Arrival City: <%=h ticket.arrival_city %></p>
-    <p>Arrival Code: <%=h ticket.arrival_code %></p>
-    <p>Arrival Time: <%=h ticket.arrival_time %></p>
-    <p>Aviacompany: <%=h ticket.aviacompany %></p>
-    <p>Flight: <%=h ticket.flight %></p>
-    <p>Change: <%=h ticket.change %></p>
-  <% end %>
- 
+</fieldset>
+
+<% if @trip.no_visa == true %>
+<fieldset>
+no visa!
+</fieldset>
+<% end %>
+
+<fieldset>
+  <p>flight there</p>
+
+  <fieldset>
+    <% for ticket in @trip.tickets %>
+      <% if ticket.back_side == false %>
+        <li><%= ticket.departure_city %></li>
+        <li><%= ticket.departure_code %></li>
+        <li><%= ticket.departure_time %></li>
+  </fieldset>
+  <fieldset>
+        <li><%= ticket.arrival_city %></li>
+        <li><%= ticket.arrival_code %></li>
+        <li><%= ticket.arrival_time %></li>
+  </fieldset>
+  <fieldset>
+        <li><%= ticket.aviacompany %></li>
+        <li><%= ticket.flight %></li>
+      <% end %>
+    <% end %>
+  </fieldset>
+</fieldset>
+
+<fieldset>
+  <p>flight back</p>
+
+  <fieldset>
+    <% for ticket in @trip.tickets %>
+      <% if ticket.back_side? %>
+        <li><%= ticket.departure_city %></li>
+        <li><%= ticket.departure_code %></li>
+        <li><%= ticket.departure_time %></li>
+  </fieldset>
+  <fieldset>
+        <li><%= ticket.arrival_city %></li>
+        <li><%= ticket.arrival_code %></li>
+        <li><%= ticket.arrival_time %></li>
+  </fieldset>
+  <fieldset>
+        <li><%= ticket.aviacompany %></li>
+        <li><%= ticket.flight %></li>
+      <% end %>
+    <% end %>
+  </fieldset>
+</fieldset>
+
+<fieldset>
+<p>Hotel</p>
+
+<p>****</p>
+    <% for hotel in @trip.hotels %>
+      <% if hotel.five_stars == false %>     
+        <li><%= hotel.name %></li>
+        <li><%= hotel.description %></li>
+      <% end %>
+    <% end %>
+
+<p>*****</p>
+    <% for hotel in @trip.hotels %>
+      <% if hotel.five_stars? %>       
+        <li><%= hotel.name %></li>
+        <li><%= hotel.description %></li>
+      <% end %>
+    <% end %>
+</fieldset>
+
+<% if current_user.try(:admin?) %>
+<fieldset>
+  <p>Tickets supplier there</p>
+  <ul>
+    <% for avisaler in @trip.aviasalers %>
+      <% if avisaler.back_side == false %>
+        <li><%= avisaler.name %></li>
+        <li><%= avisaler.quantity %></li>
+        <li><%= avisaler.price %></li>
+        <li><%= avisaler.actual_time %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <p>Tickets supplier back</p>
+  <ol>
+    <% for avisaler in @trip.aviasalers %>
+      <% if avisaler.back_side? %>
+        <li><%= avisaler.name %></li>
+        <li><%= avisaler.quantity %></li>
+        <li><%= avisaler.price %></li>
+        <li><%= avisaler.actual_time %></li>
+      <% end %>
+    <% end %>
+  </ol>
+</fieldset>
+
+<fieldset>
+  <p>Hotel supplier ****</p>
+  <ul>
+    <% for hotelsaler in @trip.hotelsalers %>
+      <% if hotelsaler.five_stars == false %>
+        <li><%= hotelsaler.name %></li>
+        <li><%= hotelsaler.quantity %></li>
+        <li><%= hotelsaler.price_one %></li>
+        <li><%= hotelsaler.price_two %></li>
+        <li><%= hotelsaler.actual_time %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <p>Hotel supplier ****</p>
+  <ul>
+    <% for hotelsaler in @trip.hotelsalers %>
+      <% if hotelsaler.five_stars? %>
+        <li><%= hotelsaler.name %></li>
+        <li><%= hotelsaler.quantity %></li>
+        <li><%= hotelsaler.price_one %></li>
+        <li><%= hotelsaler.price_two %></li>
+        <li><%= hotelsaler.actual_time %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</fieldset>
+<% end %>
 
    <% if current_user.try(:admin?) %>
   	  <%= link_to "edit", edit_trip_path(@trip.id), :class => 'action' %>	
@@ -32,4 +143,3 @@
                                      data: { confirm: "You sure?" },
                                      title: @trip.title %>
   <% end %>
-

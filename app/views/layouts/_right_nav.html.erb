@@ -1,0 +1,14 @@
+<ul class="name">       
+  <li>USD</li>
+  <li>English</li>
+  <% if signed_in? %>
+  <li class="signin"><%= link_to "Account", '#' %></li>
+    <ul class="acc_menu">
+      <li><%= link_to "Profile", current_user %></li>
+      <li><%= link_to "Settings", edit_user_path(current_user) %></li> 
+      <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+    </ul>
+  <% else %>    
+  <li class="signin"><%= link_to "Sign in", signin_path %></li>
+  <% end %>
+</ul>

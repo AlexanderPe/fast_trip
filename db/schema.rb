@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219123440) do
+ActiveRecord::Schema.define(:version => 20131225230305) do
 
   create_table "aviasalers", :force => true do |t|
     t.string   "name"
@@ -21,9 +21,35 @@ ActiveRecord::Schema.define(:version => 20131219123440) do
     t.integer  "trip_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "back_side"
   end
 
   add_index "aviasalers", ["trip_id", "created_at"], :name => "index_aviasalers_on_trip_id_and_created_at"
+
+  create_table "hotels", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "five_stars"
+    t.integer  "trip_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "hotels", ["trip_id", "created_at"], :name => "index_hotels_on_trip_id_and_created_at"
+
+  create_table "hotelsalers", :force => true do |t|
+    t.string   "name"
+    t.integer  "quantity"
+    t.datetime "actual_time"
+    t.decimal  "price_one"
+    t.decimal  "price_two"
+    t.integer  "trip_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.boolean  "five_stars"
+  end
+
+  add_index "hotelsalers", ["trip_id", "created_at"], :name => "index_hotelsalers_on_trip_id_and_created_at"
 
   create_table "tickets", :force => true do |t|
     t.string   "departure_city"
@@ -37,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20131219123440) do
     t.integer  "trip_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.boolean  "back_side"
     t.boolean  "change"
   end
 
@@ -49,6 +76,9 @@ ActiveRecord::Schema.define(:version => 20131219123440) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "no_visa"
+    t.string   "city"
+    t.string   "country"
   end
 
   add_index "trips", ["user_id", "created_at"], :name => "index_trips_on_user_id_and_created_at"

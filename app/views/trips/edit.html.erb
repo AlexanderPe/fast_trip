@@ -2,6 +2,6 @@
 <h1>Edit trip</h1>
 
 <%= form_for(@trip) do |f| %>
-  <%= render 'fields', f: f %>
+  <%= render 'fields_edit', f: f %>
   <%= f.submit "Save changes" %>
 <% end %>

@@ -1,28 +1,97 @@
 <p>
-	<%= f.label :image  %>
-	<%= f.file_field :image %>
+  <%= f.file_field :image %>
+</p>
+
+
+<div class="trip_block">
+<div class="trip_block_border">
+<p>
+  <%= f.label "Trip name", class:"trip_name_fields" %><br>
+  <%= f.text_field :title, class:"trip_fields" %>
 </p>
 
 <p>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
+  <%= f.label "Trip description" %><br>
+  <%= f.text_area :content, class:"trip_fields texter" %>
 </p>
 
 <p>
-	<%= f.label :content %>
-	<%= f.text_area :content %>
+  <%= f.label :city %><br>
+  <%= f.text_field :city, class:"trip_fields" %>
 </p>
 
-<p>flight there</p>
+<p>
+  <%= f.label :country %><br>
+  <%= f.text_field :country, class:"trip_fields" %>
+</p>
+</div>
+</div>
 
-<%= f.fields_for :aviasalers do |builder| %>
-  <%= render 'aviasaler_fields', f: builder %>
-<% end %>
 
-<%= f.fields_for :tickets do |builder| %>
-  <%= render 'ticket_fields', f: builder %>
-<% end %>
+<p>
+  <%= f.label :no_visa %>
+  <%= f.check_box :no_visa %>
+</p>
 
-<%= checkbox_to_add_fields "Add Change", f, :tickets %>
 
-<p>flight back</p>
+<fieldset>
+  <p>flight there</p>
+
+  <%= f.fields_for :aviasalers do |builder| %>
+    <%= render 'salers_fields', f: builder %>
+    <%= builder.hidden_field :back_side, :value => false %>
+  <% end %>
+
+  <%= f.fields_for :tickets do |builder| %>
+    <%= render 'ticket_fields', f: builder %>
+    <%= builder.hidden_field :back_side, :value => false %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <p>flight back</p>
+  <%= f.fields_for :aviasalers do |builder| %>
+    <%= render 'salers_fields', f: builder %>
+    <%= builder.hidden_field :back_side, :value => true %>
+  <% end %>
+
+  <%= f.fields_for :tickets do |builder| %>
+    <%= render 'ticket_fields', f: builder %>
+    <%= builder.hidden_field :back_side, :value => true %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+<p>Hotel</p>
+
+<fieldset>
+  <div class="sprite stars four_stars"></div>
+  <%= f.fields_for :hotelsalers do |builder| %>    
+    <%= render 'hotelsalers_fields', f: builder %>
+    <%= builder.hidden_field :five_stars, :value => false %>
+  <% end %>
+
+  <fieldset>
+  <%= f.fields_for :hotels do |builder| %>    
+    <%= render 'hotels_fields', f: builder %>
+    <%= builder.hidden_field :five_stars, :value => false %>
+  <% end %>
+  </fieldset>
+</fieldset>
+
+<fieldset>
+  <div class="sprite stars five_stars"></div>
+  <%= f.fields_for :hotelsalers do |builder| %>    
+    <%= render 'hotelsalers_fields', f: builder %>
+    <%= builder.hidden_field :five_stars, :value => true %>
+  <% end %>
+
+  <fieldset>
+  <%= f.fields_for :hotels do |builder| %>    
+    <%= render 'hotels_fields', f: builder %>
+    <%= builder.hidden_field :five_stars, :value => true %>
+  <% end %>
+  </fieldset>
+</fieldset>
+
+

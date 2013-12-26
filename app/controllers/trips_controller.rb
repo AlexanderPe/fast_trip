@@ -12,8 +12,10 @@ before_filter :admin_user, only: [:create, :destroy, :new, :edit, :update]
 
   def new
     @trip = Trip.new
-      aviasaler = @trip.aviasalers.build
-      ticket = @trip.tickets.build
+    @trip.aviasalers.build
+    @trip.hotels.build
+    @trip.tickets.build
+    @trip.hotelsalers.build
   end
 
   def create
@@ -44,5 +46,5 @@ before_filter :admin_user, only: [:create, :destroy, :new, :edit, :update]
     else
       render 'edit'
     end
-  end
+  end  
 end
