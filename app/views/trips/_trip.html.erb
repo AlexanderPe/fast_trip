@@ -21,7 +21,7 @@
 <div id="price_p">
 <%= number_to_currency(trip.aviasalers.sum(:price).to_i + trip.hotelsalers.where(five_stars:false).sum(:price_one),  precision: 0) %> 
 </div></div>
-<div class="line"><div class="left"></div></div><div class="right"></div> </div>
+<div class="line"><div class="rounds left"></div></div><div class="rounds right"></div> </div>
 
 <!--
 <% if current_user.try(:admin?) %>

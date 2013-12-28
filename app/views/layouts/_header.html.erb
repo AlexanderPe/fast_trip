@@ -1,8 +1,52 @@
-
-
+<header class="user_header">
+    <div id= "header_div">
+    <li>hello@fasttrip.me | +38 093 063 94 14</li>  
+    
+    <nav>
 
       <%= render 'layouts/right_nav' %>
+    </nav>
+  </div>
+</header>   
 
+<% if current_page?(root_path) %>   
+<div class="cover">
+   
+<div id="big">
+   <div class="calculator"> 
+      <div id="trip">
+       <div id="fast_trip_big"></div>
+       <div id="logo_big"></div>
+       <div id="elipse_big"></div>  
+       <div id="from">from Kyiv</div>
 
-
-            
+       <div id="qq" class="dd wrapper-dropdown-3"><span>one person</span>
+        <ul class="dropdown">
+            <li><a href="#">one person</a>
+            </li>
+            <li><a href="#">2 persons</a>
+            </li>
+            <li><a href="#">3 persons</a>
+            </li>
+            <li><a href="#">4 persons</a>
+            </li>
+        </ul>
+       </div>
+        
+       <div id="dd" class="wrapper-dropdown-3"><span>one room</span>
+        <ul class="dropdown">
+            <li><a href="#">one room</a>
+            </li>
+            <li><a href="#">2 rooms</a>
+            </li>
+            <li><a href="#">3 rooms</a>
+            </li>
+            <li><a href="#">4 rooms</a>
+            </li>
+        </ul>
+       </div>  
+      </div>   
+   </div>
+</div>
+</div>      
+ <% end %>  

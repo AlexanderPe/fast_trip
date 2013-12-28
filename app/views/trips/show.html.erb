@@ -1,88 +1,17 @@
-<fieldset>
+<div class="headliner"></div>
 
-<p>
-<%= image_tag @trip.image_url(:thumb).to_s %> 
-</p>
+<div class="image_block2">
 
-<p><%= @trip.title %></p>
-<p><%= @trip.content %></p>
-
-</fieldset>
-
-<% if @trip.no_visa == true %>
-<fieldset>
-no visa!
-</fieldset>
-<% end %>
-
-<fieldset>
-  <p>flight there</p>
-
-  <fieldset>
-    <% for ticket in @trip.tickets %>
-      <% if ticket.back_side == false %>
-        <li><%= ticket.departure_city %></li>
-        <li><%= ticket.departure_code %></li>
-        <li><%= ticket.departure_time %></li>
-  </fieldset>
-  <fieldset>
-        <li><%= ticket.arrival_city %></li>
-        <li><%= ticket.arrival_code %></li>
-        <li><%= ticket.arrival_time %></li>
-  </fieldset>
-  <fieldset>
-        <li><%= ticket.aviacompany %></li>
-        <li><%= ticket.flight %></li>
-      <% end %>
-    <% end %>
-  </fieldset>
-</fieldset>
-
-<fieldset>
-  <p>flight back</p>
-
-  <fieldset>
-    <% for ticket in @trip.tickets %>
-      <% if ticket.back_side? %>
-        <li><%= ticket.departure_city %></li>
-        <li><%= ticket.departure_code %></li>
-        <li><%= ticket.departure_time %></li>
-  </fieldset>
-  <fieldset>
-        <li><%= ticket.arrival_city %></li>
-        <li><%= ticket.arrival_code %></li>
-        <li><%= ticket.arrival_time %></li>
-  </fieldset>
-  <fieldset>
-        <li><%= ticket.aviacompany %></li>
-        <li><%= ticket.flight %></li>
-      <% end %>
-    <% end %>
-  </fieldset>
-</fieldset>
-
-<fieldset>
-<p>Hotel</p>
-
-<p>****</p>
-    <% for hotel in @trip.hotels %>
-      <% if hotel.five_stars == false %>     
-        <li><%= hotel.name %></li>
-        <li><%= hotel.description %></li>
-      <% end %>
-    <% end %>
-
-<p>*****</p>
-    <% for hotel in @trip.hotels %>
-      <% if hotel.five_stars? %>       
-        <li><%= hotel.name %></li>
-        <li><%= hotel.description %></li>
-      <% end %>
-    <% end %>
-</fieldset>
+<div class="block_trip">
+  <% if @trip.no_visa? %>
+  <div id="top_triangle"></div><div id="novisa"></div><div id="bot_triangle"></div>
+  <% end %>
+<div class="image">
+<%= link_to image_tag(@trip.image_url(:thumb).to_s), trip_path(@trip.id) %> 
+</div>
 
 <% if current_user.try(:admin?) %>
-<fieldset>
+<div class="block_trip"> 
   <p>Tickets supplier there</p>
   <ul>
     <% for avisaler in @trip.aviasalers %>
@@ -106,10 +35,8 @@ no visa!
       <% end %>
     <% end %>
   </ol>
-</fieldset>
 
-<fieldset>
-  <p>Hotel supplier ****</p>
+ <p>Hotel supplier ****</p>
   <ul>
     <% for hotelsaler in @trip.hotelsalers %>
       <% if hotelsaler.five_stars == false %>
@@ -122,7 +49,7 @@ no visa!
     <% end %>
   </ul>
 
-  <p>Hotel supplier ****</p>
+  <p>Hotel supplier *****</p>
   <ul>
     <% for hotelsaler in @trip.hotelsalers %>
       <% if hotelsaler.five_stars? %>
@@ -134,12 +61,156 @@ no visa!
       <% end %>
     <% end %>
   </ul>
-</fieldset>
+</div>
 <% end %>
 
-   <% if current_user.try(:admin?) %>
-  	  <%= link_to "edit", edit_trip_path(@trip.id), :class => 'action' %>	
+<div class="price">
+<div id="price_p">
+<%= number_to_currency(@trip.aviasalers.sum(:price).to_i + @trip.hotelsalers.where(five_stars:false).sum(:price_one),  precision: 0) %> 
+</div></div>
+<div class="line"><div class="rounds left"></div></div><div class="rounds right"></div> </div>
+</div>
+
+
+
+<div class="trip_block">
+  <div class="rounds left_trip"></div>
+  <div class="rounds right_trip"></div> 
+<div class="trip_block_border">
+<div class="trip_part">
+  <div class="trip_block_border">
+<h3><%= @trip.title %></h3>
+  </div>
+<p><%= @trip.city %></p> 
+<p><%= @trip.country %></p> 
+
+    <% for ticket in @trip.tickets %>
+      <% if ticket.back_side == false %>
+        <li><%= ticket.departure_time.strftime(" There at %B %d %t in %H:%M") %></li>
+      <% elsif ticket.back_side == true %>
+        <li><%= ticket.arrival_time.strftime("Back to Kyiv at %B %d %t in %H:%M") %></li>
+      <% end %>
+    <% end %>
+
+<p><%= @trip.content %></p>
+</div>
+</div>
+
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
+
+<div class="trip_block_border">
+<div class="trip_part">
+ 
+<div class="trip_block_border">
+  <div class="sprite airplane_there"></div>
+<h4>Flight there:</h4>
+
+</div>
+ 
+    <% for ticket in @trip.tickets %>
+    <ul class="supplier">
+      <% if ticket.back_side == false %>
+      <p><b><%= ticket.departure_city %>(<%= ticket.departure_code %>) - <%= ticket.arrival_city %>(<%= ticket.arrival_code %>)</b></p>
+
+        <li>Departure</br>
+        <%= ticket.departure_time.strftime("%B %d %t") %></br>
+        <%= ticket.departure_time.strftime("%H:%M") %>
+        </li>
+
+        <li>On the way</br>
+        <%= ticket.aviacompany %>, <%= ticket.flight %></br>
+        </li>
+
+        <li>Arrival</br>
+        <%= ticket.arrival_time.strftime("%B %d %t") %></br>
+        <%= ticket.arrival_time.strftime("%H:%M") %>
+          </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
+
+<div class="trip_part">
+
+<b>Hotel in <%= @trip.city %></b>
+<div class="sprite hotel_image"></div>
+
+
+  <div class="sprite stars four_stars"></div>
+
+
+    <% for hotel in @trip.hotels %>
+      <% if hotel.five_stars == false %>     
+        <li><%= hotel.name %></li>
+        <li><%= hotel.description %></li>
+        <li><%= hotel.address %></li>
+      <% end %>
+    <% end %>
+
+  <p><div class="sprite stars five_stars"></div></p>
+
+  <% for hotel in @trip.hotels %>
+      <% if hotel.five_stars? %>       
+        <li><%= hotel.name %></li>
+        <li><%= hotel.description %></li>
+        <li><%= hotel.address %></li>
+      <% end %>
+  <% end %>
+
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
+
+<div class="trip_block_border">
+<div class="trip_part">
+
+<b>Flight back:</b>
+<div class="sprite airplane_back"></div>
+
+ 
+    <% for ticket in @trip.tickets %>
+    <ul class="supplier">
+      <% if ticket.back_side == true %>
+      <p><b><%= ticket.departure_city %>(<%= ticket.departure_code %>) - <%= ticket.arrival_city %>(<%= ticket.arrival_code %>)</b></p>
+
+        <li>Departure</br>
+        <%= ticket.departure_time.strftime("%B %d %t") %></br>
+        <%= ticket.departure_time.strftime("%H:%M") %>
+        </li>
+
+        <li>On the way</br>
+        <%= ticket.aviacompany %>, <%= ticket.flight %></br>
+        </li>
+
+        <li>Arrival</br>
+        <%= ticket.arrival_time.strftime("%B %d %t") %></br>
+        <%= ticket.arrival_time.strftime("%H:%M") %>
+          </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+</div>
+
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
+ <% if current_user.try(:admin?) %>
+      <%= link_to "edit", edit_trip_path(@trip.id), :class => 'action' %> 
     | <%= link_to "delete", @trip, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: @trip.title %>
   <% end %>
+
+</div>
+</div>
+
+
+
+  

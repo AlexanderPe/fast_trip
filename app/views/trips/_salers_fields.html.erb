@@ -1,18 +1,23 @@
- <p>Ticket supplier</p>
 
-<p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
- </p>
- <p>
-    <%= f.label :quantity %>
-    <%= f.text_field :quantity %>
- <p>
- </p>
-    <%= f.label :actual_time %>
-    <%= f.datetime_select :actual_time %>
- </p>
- <p>
-    <%= f.label :price %>
-    <%= f.text_field :price %>
- </p>
+<ul class="supplier">
+
+<li>
+ <%= f.label "Supplier" %><br>
+ <%= f.text_field :name, class:"trip_fields middle_trip_fields" %>
+<li>
+
+<li>
+ <%= f.label :quantity %><br>
+ <%= f.text_field :quantity, class:"trip_fields small_trip_fields" %>
+<li>
+
+<li>
+ <%= f.label :actual_time %><br>
+ <%= f.datetime_select :actual_time, class:"trip_fields small_trip_fields" %>
+<li>
+
+<li>
+ <%= f.label "Price ($)" %><br>
+ <%= f.text_field :price, class:"trip_fields middle_trip_fields" %>
+</li>
+<ul>

@@ -1,12 +1,17 @@
-<p>
+<div class="image_block">
+  <%= f.label "Download the trip image" %><br>
   <%= f.file_field :image %>
-</p>
+</div>
+
 
 
 <div class="trip_block">
+  <div class="rounds left_trip"></div>
+  <div class="rounds right_trip"></div> 
 <div class="trip_block_border">
+<div class="trip_part">
 <p>
-  <%= f.label "Trip name", class:"trip_name_fields" %><br>
+  <%= f.label "Trip name" %><br>
   <%= f.text_field :title, class:"trip_fields" %>
 </p>
 
@@ -17,39 +22,56 @@
 
 <p>
   <%= f.label :city %><br>
-  <%= f.text_field :city, class:"trip_fields" %>
+  <%= f.text_field :city, class:"trip_fields middle_trip_fields" %>
 </p>
 
 <p>
   <%= f.label :country %><br>
-  <%= f.text_field :country, class:"trip_fields" %>
+  <%= f.text_field :country, class:"trip_fields middle_trip_fields" %>
 </p>
 </div>
 </div>
 
+<div class="rounds left_trip"></div>
+  <div class="rounds right_trip"></div>
 
-<p>
+<div class="trip_block_border">
+<div class="trip_part">
+
   <%= f.label :no_visa %>
   <%= f.check_box :no_visa %>
-</p>
 
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
 
-<fieldset>
-  <p>flight there</p>
+<div class="trip_block_border">
+<div class="trip_part">
+ 
+<b>Flight there:</b>
+<div class="sprite airplane_there"></div>
+ 
+  <%= f.fields_for :tickets do |builder| %>
+    <%= render 'ticket_fields', f: builder %>
+    <%= builder.hidden_field :back_side, :value => false %>
+  <% end %>
 
   <%= f.fields_for :aviasalers do |builder| %>
     <%= render 'salers_fields', f: builder %>
     <%= builder.hidden_field :back_side, :value => false %>
   <% end %>
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
 
-  <%= f.fields_for :tickets do |builder| %>
-    <%= render 'ticket_fields', f: builder %>
-    <%= builder.hidden_field :back_side, :value => false %>
-  <% end %>
-</fieldset>
+<div class="trip_block_border">
+<div class="trip_part">
 
-<fieldset>
-  <p>flight back</p>
+<b>Flight back:</b>
+<div class="sprite airplane_back"></div>
+
   <%= f.fields_for :aviasalers do |builder| %>
     <%= render 'salers_fields', f: builder %>
     <%= builder.hidden_field :back_side, :value => true %>
@@ -59,39 +81,38 @@
     <%= render 'ticket_fields', f: builder %>
     <%= builder.hidden_field :back_side, :value => true %>
   <% end %>
-</fieldset>
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
 
-<fieldset>
-<p>Hotel</p>
+<div class="trip_part">
 
-<fieldset>
+<b>Hotel:</b>
+<div class="sprite hotel_image"></div>
+
+
   <div class="sprite stars four_stars"></div>
+
+
+  <%= f.fields_for :hotels do |builder| %>    
+    <%= render 'hotels_fields', f: builder %>
+    <%= builder.hidden_field :five_stars, :value => false %>
+  <% end %>
+
   <%= f.fields_for :hotelsalers do |builder| %>    
     <%= render 'hotelsalers_fields', f: builder %>
     <%= builder.hidden_field :five_stars, :value => false %>
   <% end %>
 
-  <fieldset>
-  <%= f.fields_for :hotels do |builder| %>    
-    <%= render 'hotels_fields', f: builder %>
-    <%= builder.hidden_field :five_stars, :value => false %>
-  <% end %>
-  </fieldset>
-</fieldset>
 
-<fieldset>
-  <div class="sprite stars five_stars"></div>
+  <p><div class="sprite stars five_stars"></div></p>
+ <%= f.fields_for :hotels do |builder| %>    
+    <%= render 'hotels_fields', f: builder %>
+    <%= builder.hidden_field :five_stars, :value => true %>
+  <% end %>
+
   <%= f.fields_for :hotelsalers do |builder| %>    
     <%= render 'hotelsalers_fields', f: builder %>
     <%= builder.hidden_field :five_stars, :value => true %>
   <% end %>
-
-  <fieldset>
-  <%= f.fields_for :hotels do |builder| %>    
-    <%= render 'hotels_fields', f: builder %>
-    <%= builder.hidden_field :five_stars, :value => true %>
-  <% end %>
-  </fieldset>
-</fieldset>
-
-

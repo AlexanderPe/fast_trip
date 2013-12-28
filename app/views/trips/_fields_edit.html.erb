@@ -1,90 +1,111 @@
-<fieldset>
-<p>
-<%= image_tag @trip.image_url(:thumb).to_s %> 
-</p>
-<p>
-  <%= f.label :image  %>
+<div class="image_block">
+  <%= f.label "Download the trip image" %><br>
   <%= f.file_field :image %>
+</div>
+
+
+
+<div class="trip_block">
+  <div class="rounds left_trip"></div>
+  <div class="rounds right_trip"></div> 
+<div class="trip_block_border">
+<div class="trip_part">
+<p>
+  <%= f.label "Trip name" %><br>
+  <%= f.text_field :title, class:"trip_fields" %>
 </p>
 
 <p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.label "Trip description" %><br>
+  <%= f.text_area :content, class:"trip_fields texter" %>
 </p>
 
 <p>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+  <%= f.label :city %><br>
+  <%= f.text_field :city, class:"trip_fields middle_trip_fields" %>
 </p>
 
 <p>
-  <%= f.label :city %>
-  <%= f.text_area :city %>
+  <%= f.label :country %><br>
+  <%= f.text_field :country, class:"trip_fields middle_trip_fields" %>
 </p>
+</div>
+</div>
 
-<p>
-  <%= f.label :country %>
-  <%= f.text_area :country %>
-</p>
-</fieldset>
+<div class="rounds left_trip"></div>
+  <div class="rounds right_trip"></div>
 
-<fieldset>
-<p>
+<div class="trip_block_border">
+<div class="trip_part">
+
   <%= f.label :no_visa %>
   <%= f.check_box :no_visa %>
-</p>
-</fieldset>
 
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
 
-
-<fieldset>
-  <p>flight there</p>
-  <%= f.fields_for :aviasalers, @trip.aviasalers.select{|aviasaler| aviasaler.back_side == false} do |aviasaler| %>
-  <%= render 'salers_fields', f: aviasaler %>
-  <% end %>
+<div class="trip_block_border">
+<div class="trip_part">
+ 
+<b>Flight there:</b>
+<div class="sprite airplane_there"></div>
 
   <%= f.fields_for :tickets, @trip.tickets.select{|ticket| ticket.back_side == false} do |ticket| %>
     <%= render 'ticket_fields', f: ticket %>
   <% end %>
-</fieldset>
-
-<fieldset>
-  <p>flight back</p>
-  <%= f.fields_for :aviasalers, @trip.aviasalers.select{|aviasaler| aviasaler.back_side?} do |aviasaler| %>
+ 
+  <%= f.fields_for :aviasalers, @trip.aviasalers.select{|aviasaler| aviasaler.back_side == false} do |aviasaler| %>
   <%= render 'salers_fields', f: aviasaler %>
   <% end %>
 
-  <%= f.fields_for :tickets, @trip.tickets.select{|ticket| ticket.back_side?} do |ticket| %>
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
+
+<div class="trip_block_border">
+<div class="trip_part">
+
+<b>Flight back:</b>
+<div class="sprite airplane_back"></div>
+
+  <%= f.fields_for :tickets, @trip.tickets.select{|ticket| ticket.back_side == true} do |ticket| %>
     <%= render 'ticket_fields', f: ticket %>
   <% end %>
-</fieldset>
+ 
+  <%= f.fields_for :aviasalers, @trip.aviasalers.select{|aviasaler| aviasaler.back_side == true} do |aviasaler| %>
+  <%= render 'salers_fields', f: aviasaler %>
+  <% end %>
 
-<fieldset>
-<p>Hotel</p>
+</div>
+</div>
+<div class="rounds left_trip"></div>
+<div class="rounds right_trip"></div>
 
-<fieldset>
-  <p>****</p>
+<div class="trip_part">
+
+<b>Hotel:</b>
+<div class="sprite hotel_image"></div>
+
+
+  <div class="sprite stars four_stars"></div>
+
+  <%= f.fields_for :hotels, @trip.hotels.select{|hotel| hotel.five_stars == false} do |hotel| %>    
+    <%= render 'hotels_fields', f: hotel %>
+  <% end %>
+
   <%= f.fields_for :hotelsalers, @trip.hotelsalers.select{|hotelsaler| hotelsaler.five_stars == false} do |hotelsaler| %>    
     <%= render 'hotelsalers_fields', f: hotelsaler %>
   <% end %>
 
-  <fieldset>
-  <%= f.fields_for :hotels, @trip.hotels.select{|hotel| hotel.five_stars == false} do |hotel| %>    
+  <p><div class="sprite stars five_stars"></div></p>
+
+  <%= f.fields_for :hotels, @trip.hotels.select{|hotel| hotel.five_stars == true} do |hotel| %>    
     <%= render 'hotels_fields', f: hotel %>
   <% end %>
-  </fieldset>
-</fieldset>
 
-<fieldset>
-  <div class="stars five_stars"></div>
-  <%= f.fields_for :hotelsalers, @trip.hotelsalers.select{|hotelsaler| hotelsaler.five_stars?} do |hotelsaler| %>    
+  <%= f.fields_for :hotelsalers, @trip.hotelsalers.select{|hotelsaler| hotelsaler.five_stars == true} do |hotelsaler| %>    
     <%= render 'hotelsalers_fields', f: hotelsaler %>
   <% end %>
-
-  <fieldset>
-  <%= f.fields_for :hotels, @trip.hotels.select{|hotel| hotel.five_stars?} do |hotel| %>
-    <%= render 'hotels_fields', f: hotel %>
-  <% end %>
-  </fieldset>
-</fieldset>
-</fieldset>

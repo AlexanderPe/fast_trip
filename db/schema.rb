@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131225230305) do
+ActiveRecord::Schema.define(:version => 20131228033840) do
 
   create_table "aviasalers", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20131225230305) do
     t.integer  "trip_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "address"
   end
 
   add_index "hotels", ["trip_id", "created_at"], :name => "index_hotels_on_trip_id_and_created_at"
